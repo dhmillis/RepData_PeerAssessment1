@@ -1,0 +1,11 @@
+Reproducible Research: Peer Asssignment 1
+========================================================
+
+```{r computetime}
+time <- format(Sys.time(), "%a %b %d %X %Y")
+rand <- rnorm(1)
+```
+
+The current time is `r time`.
+
+My favorite random number is `r rand`.
