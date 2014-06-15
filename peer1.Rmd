@@ -1,11 +1,39 @@
-Reproducible Research: Peer Asssignment 1
+Reproducible Research
+========================================================
+Peer Asssignment 1
 ========================================================
 
-```{r computetime}
-time <- format(Sys.time(), "%a %b %d %X %Y")
-rand <- rnorm(1)
+## Loading the Data from a Zipped File
+
+Create path to the data file downloaded from the course web site.
+```{r}
+filepath <- paste(getwd(), "activity.zip", sep="/")
 ```
 
-The current time is `r time`.
+Get the name of the file in the .zip archive.
+```{r}
+fname <- unzip(filepath, list=TRUE)$Name
+```
 
-My favorite random number is `r rand`.
+Unzip the file to the name retrieved from the archive.
+```{r}
+unzip(filepath, files=fname)
+```
+
+Read the data from the file into a data frame.
+```{r}
+data <- read.csv(paste(getwd(), fname, sep="/"))
+```
+
+## Preprocessing the Data 
+
+Change the date format from factor to date.
+
+```{r}
+data$date <- as.Date(data$date, format = "%Y-%m-%d")
+```
+
+Create a subset called 'bestdata' consisting of the rows with no missing data.
+```{r}
+bestdata <- data[!is.na(data$steps), ]
+```

@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="x-ua-compatible" content="IE=9" >
 
-<title>Reproducible Research: Peer Asssignment 1</title>
+<title>Reproducible Research</title>
 
 <style type="text/css">
 body, td {
@@ -179,15 +179,43 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>Reproducible Research: Peer Asssignment 1</h1>
+<h1>Reproducible Research</h1>
 
-<pre><code class="r">time &lt;- format(Sys.time(), &quot;%a %b %d %X %Y&quot;)
-rand &lt;- rnorm(1)
+<h1>Peer Asssignment 1</h1>
+
+<h2>Loading the Data from a Zipped File</h2>
+
+<p>Create path to the data file downloaded from the course web site.</p>
+
+<pre><code class="r">filepath &lt;- paste(getwd(), &quot;activity.zip&quot;, sep=&quot;/&quot;)
 </code></pre>
 
-<p>The current time is Sun Jun 15 9:39:25 AM 2014.</p>
+<p>Get the name of the file in the .zip archive.</p>
 
-<p>My favorite random number is 0.335.</p>
+<pre><code class="r">fname &lt;- unzip(filepath, list=TRUE)$Name
+</code></pre>
+
+<p>Unzip the file to the name retrieved from the archive.</p>
+
+<pre><code class="r">unzip(filepath, files=fname)
+</code></pre>
+
+<p>Read the data from the file into a data frame.</p>
+
+<pre><code class="r">data &lt;- read.csv(paste(getwd(), fname, sep=&quot;/&quot;))
+</code></pre>
+
+<h2>Preprocessing the Data</h2>
+
+<p>Change the date format from factor to date.</p>
+
+<pre><code class="r">data$date &lt;- as.Date(data$date, format = &quot;%Y-%m-%d&quot;)
+</code></pre>
+
+<p>Create a subset called &#39;bestdata&#39; consisting of the rows with no missing data.</p>
+
+<pre><code class="r">bestdata &lt;- data[!is.na(data$steps), ]
+</code></pre>
 
 </body>
 
