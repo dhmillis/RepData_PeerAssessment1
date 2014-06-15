@@ -230,4 +230,4 @@ xyplot(avg_steps ~ interval | dtype, data=ww, layout=c(1,2), panel = function(x,
 
 ![plot of chunk unnamed-chunk-19](figure/unnamed-chunk-19.png) 
 
-The two plots suggest that the average number of steps taken increases very slightly over the course of the day on weekdays, but increases at a higher rate over the course of the day on weekend days.
+Conclusion: The regression lines for the two plots suggest that the average number of steps taken increases very slightly over the course of the day on weekdays, but increases at a higher rate over the course of the day on weekend days.
